@@ -6,29 +6,43 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import PetsIcon from '@mui/icons-material/Pets';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 export default function MediaCard() {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, padding: 2}}>
+
+      <Box>
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 240, width: 240, backgroundSize: "contain", margin: "auto"}}
         image="profile1.png"
         title="profile image"
       />
+      </Box>
+      
       <CardContent>
       <PetsIcon />
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          John Smith
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          Department: UX/UI Design
         </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Position: UI Designer
+        </Typography>
+        <Stack direction="row" spacing={1} sx={{ marginTop: 2, justifyContent: "center"}}>
+      <Chip label="Figma" />
+      <Chip label="AdobeXD" />
+      <Chip label="Sketch" />
+    </Stack>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+      <Stack direction="row" spacing={1} sx={{justifyContent: "center"}}>
+      <Chip label="Active" variant="outlined" />
+      <Chip label="Hours: 20" variant="outlined" />
+    </Stack>
     </Card>
   );
 }
