@@ -10,14 +10,16 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
-export default function MediaCard() {
+export default function MediaCard({ data }) {
+  /* console.log(data); */
   return (
-    <Card sx={{ maxWidth: 345, padding: 2}}>
-
+    <>
+      {data.map((item, index) => (
+        <Card sx={{ maxWidth: 345, padding: 2, marginTop: 2}}>
       <Box>
       <CardMedia
         sx={{ height: 240, width: 240, backgroundSize: "contain", margin: "auto"}}
-        image="/employee-dashboard-react-app/profile1.png"
+        image={`/employee-dashboard-react-app/${item.image}`}
         title="profile image"
       />
       </Box>
@@ -25,7 +27,7 @@ export default function MediaCard() {
       <CardContent>
       <PetsIcon />
         <Typography gutterBottom variant="h5" component="div">
-          John Smith
+          {item.firstName} {item.lastName}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Department: UX/UI Design
@@ -33,16 +35,23 @@ export default function MediaCard() {
         <Typography variant="body2" color="text.secondary">
           Position: UI Designer
         </Typography>
-        <Stack direction="row" spacing={1} sx={{ marginTop: 2, justifyContent: "center"}}>
-      <Chip label="Figma" />
-      <Chip label="AdobeXD" />
-      <Chip label="Sketch" />
+        <Stack direction="row" spacing={1} sx={{ marginTop: 2, justifyContent: "center", direction: "row", flexWrap: "wrap"}}>
+     {item.skills.map((skill, skillIndex) => (
+      <Chip key={skillIndex} label={skill} style={{ marginTop: "10px"}}/>  
+      ))}
     </Stack>
       </CardContent>
       <Stack direction="row" spacing={1} sx={{justifyContent: "center"}}>
-      <Chip label="Active" variant="outlined" />
-      <Chip label="Hours: 20" variant="outlined" />
+      <Chip 
+      label={item.onLeave ? "Inactive" : "Active"} 
+      variant={item.onLeave ? "outlined" : ""}
+      />
+      <Chip label={`Hours: ${item.hoursLoggedThisWeek}`} variant="outlined" />
     </Stack>
     </Card>
+
+
+      ))}
+    </>
   );
 }

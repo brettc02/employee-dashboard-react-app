@@ -6,15 +6,16 @@ import Title from './components/title.jsx';
 import MediaCard from './components/employee-card.jsx';
 import Container from '@mui/material/Container';
 import Data from './data/data.js';
-
+import Button from '@mui/material/Button';
 
 function App() {
-  const [count, setCount] = useState(0)
-  console.log(Data);
-
+  const [onLeave, setLeave] = useState(true)
+console.log(onLeave);
   return (
-    <Container Fixed>
-<MediaCard />
+    <Container fixed>
+    <Button variant="contained" sx={{ marginRight: 2 }}>Active</Button>
+    <Button variant="outlined">On Leave</Button>
+      <MediaCard data={Data} />
     </Container>
   )
 }
